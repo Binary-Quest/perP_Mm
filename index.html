@@ -3,44 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudySpend Pro - Premium Expense Tracker</title>
+    <title>StudySpend Pro - Premium Student Expense Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Premium Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
             <div class="logo-animation">
                 <div class="logo-circle">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
-                <div class="loading-rings">
+                <div class="logo-rings">
                     <div class="ring ring-1"></div>
                     <div class="ring ring-2"></div>
                     <div class="ring ring-3"></div>
                 </div>
             </div>
-            <h1 class="welcome-text">Welcome to</h1>
-            <h2 class="brand-text">StudySpend Pro</h2>
-            <p class="tagline">Your Premium Expense Management Solution</p>
+            <h1 class="welcome-title">StudySpend Pro</h1>
+            <p class="welcome-subtitle">Smart Expense Management for Students</p>
             <div class="loading-bar">
                 <div class="loading-progress"></div>
             </div>
         </div>
-        <div class="floating-elements">
-            <div class="float-element float-1">💰</div>
-            <div class="float-element float-2">📊</div>
-            <div class="float-element float-3">🎯</div>
-            <div class="float-element float-4">📱</div>
-            <div class="float-element float-5">💎</div>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
     </div>
 
     <!-- Main App Container -->
-    <div id="main-app" class="app-container hidden">
-        <!-- Sidebar Navigation -->
+    <div class="app-container" id="main-app">
+        <!-- Premium Sidebar -->
         <nav class="sidebar">
             <div class="sidebar-header">
                 <div class="logo-container">
@@ -53,6 +52,7 @@
                     </div>
                 </div>
             </div>
+            
             <ul class="nav-menu">
                 <li><a href="#dashboard" class="nav-link active" data-section="dashboard">
                     <div class="nav-icon"><i class="fas fa-home"></i></div>
@@ -74,9 +74,14 @@
                     <span>Budget Limits</span>
                     <div class="nav-indicator"></div>
                 </a></li>
-                <li><a href="#statistics" class="nav-link" data-section="statistics">
-                    <div class="nav-icon"><i class="fas fa-chart-bar"></i></div>
-                    <span>Statistics</span>
+                <li><a href="#analytics" class="nav-link" data-section="analytics">
+                    <div class="nav-icon"><i class="fas fa-chart-pie"></i></div>
+                    <span>Analytics</span>
+                    <div class="nav-indicator"></div>
+                </a></li>
+                <li><a href="#history" class="nav-link" data-section="history">
+                    <div class="nav-icon"><i class="fas fa-history"></i></div>
+                    <span>History</span>
                     <div class="nav-indicator"></div>
                 </a></li>
                 <li><a href="#settings" class="nav-link" data-section="settings">
@@ -85,46 +90,51 @@
                     <div class="nav-indicator"></div>
                 </a></li>
             </ul>
+
             <div class="sidebar-footer">
-                <div class="user-profile">
-                    <div class="user-avatar">
-                        <i class="fas fa-user"></i>
+                <div class="tracking-period-info">
+                    <div class="period-icon">
+                        <i class="fas fa-calendar-check"></i>
                     </div>
-                    <div class="user-info">
-                        <h4>Student User</h4>
-                        <span>Premium Plan</span>
+                    <div class="period-details">
+                        <span class="period-label">Current Period</span>
+                        <span class="period-value" id="current-period-display">30 Days</span>
                     </div>
                 </div>
             </div>
         </nav>
 
-        <!-- Main Content -->
+        <!-- Main Content Area -->
         <main class="main-content">
             <!-- Dashboard Section -->
             <section id="dashboard" class="content-section active">
                 <div class="section-header">
                     <div class="header-content">
-                        <h1 class="page-title">
-                            <span class="title-icon">👋</span>
-                            Welcome Back, Student!
-                        </h1>
-                        <p class="page-subtitle">Here's your financial overview for today</p>
+                        <h1 class="page-title">Dashboard</h1>
+                        <p class="page-subtitle">Your financial overview at a glance</p>
                     </div>
                     <div class="header-actions">
-                        <button id="enable-notifications" class="premium-btn glass-effect">
+                        <button id="enable-notifications" class="premium-btn">
                             <i class="fas fa-bell"></i>
                             <span>Smart Reminders</span>
+                        </button>
+                        <button onclick="showPeriodModal()" class="premium-btn secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>New Period</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Premium Stats Cards -->
-                <div class="stats-grid">
-                    <div class="stat-card monthly-card glass-effect">
-                        <div class="card-background"></div>
+                <!-- Premium Dashboard Cards -->
+                <div class="dashboard-grid">
+                    <div class="premium-card primary-card">
+                        <div class="card-background">
+                            <div class="bg-shape shape-1"></div>
+                            <div class="bg-shape shape-2"></div>
+                        </div>
                         <div class="card-content">
                             <div class="card-header">
-                                <div class="card-icon monthly-icon">
+                                <div class="card-icon">
                                     <i class="fas fa-wallet"></i>
                                 </div>
                                 <div class="card-menu">
@@ -132,172 +142,174 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h3>Monthly Spending</h3>
-                                <div class="amount-container">
+                                <h3>Current Spending</h3>
+                                <div class="amount-display">
                                     <span class="currency">₹</span>
-                                    <span class="amount" id="monthly-total">0</span>
+                                    <span class="amount" id="current-total">0</span>
                                 </div>
-                                <div class="card-footer">
-                                    <span class="budget-info">of ₹<span id="monthly-limit">10000</span> budget</span>
-                                    <div class="trend-indicator positive">
-                                        <i class="fas fa-arrow-up"></i>
-                                        <span>2.5%</span>
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="spending-progress"></div>
                                     </div>
+                                    <span class="progress-text">of ₹<span id="current-limit">10000</span></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="progress-ring" id="monthly-progress"></div>
                     </div>
 
-                    <div class="stat-card remaining-card glass-effect">
-                        <div class="card-background"></div>
+                    <div class="premium-card success-card">
                         <div class="card-content">
                             <div class="card-header">
-                                <div class="card-icon remaining-icon">
+                                <div class="card-icon">
                                     <i class="fas fa-piggy-bank"></i>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <h3>Remaining Budget</h3>
-                                <div class="amount-container">
+                                <div class="amount-display">
                                     <span class="currency">₹</span>
-                                    <span class="amount" id="remaining-budget">10000</span>
+                                    <span class="amount" id="remaining-amount">10000</span>
                                 </div>
-                                <div class="card-footer">
-                                    <span id="days-left">30 days left</span>
+                                <div class="info-text">
+                                    <span id="days-remaining">30 days</span> remaining
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="stat-card bills-card glass-effect">
-                        <div class="card-background"></div>
+                    <div class="premium-card warning-card">
                         <div class="card-content">
                             <div class="card-header">
-                                <div class="card-icon bills-icon">
-                                    <i class="fas fa-calendar-check"></i>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <h3>Fixed Bills</h3>
-                                <div class="amount-container">
-                                    <span class="currency">₹</span>
-                                    <span class="amount" id="recurring-total">0</span>
-                                </div>
-                                <div class="card-footer">
-                                    <span><span id="upcoming-bills">0</span> bills upcoming</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card today-card glass-effect">
-                        <div class="card-background"></div>
-                        <div class="card-content">
-                            <div class="card-header">
-                                <div class="card-icon today-icon">
+                                <div class="card-icon">
                                     <i class="fas fa-calendar-day"></i>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h3>Today's Spending</h3>
-                                <div class="amount-container">
+                                <h3>Today's Expenses</h3>
+                                <div class="amount-display">
                                     <span class="currency">₹</span>
-                                    <span class="amount" id="today-spent">0</span>
+                                    <span class="amount" id="today-total">0</span>
                                 </div>
-                                <div class="card-footer">
-                                    <span>Avg: ₹<span id="daily-average">0</span></span>
+                                <div class="info-text">
+                                    Daily avg: ₹<span id="daily-avg">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="premium-card info-card">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fas fa-chart-trending-up"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h3>Spending Rate</h3>
+                                <div class="rate-display">
+                                    <span class="rate-value" id="spending-rate">0</span>
+                                    <span class="rate-unit">%/day</span>
+                                </div>
+                                <div class="info-text">
+                                    <span id="trend-indicator">↗️ Increasing</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
-                <div class="quick-actions-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-bolt"></i>
-                        Quick Actions
-                    </h3>
-                    <div class="quick-actions glass-effect">
-                        <button class="action-btn" onclick="showSection('add-expense')">
-                            <div class="action-icon add-icon">
-                                <i class="fas fa-plus"></i>
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stats-header">
+                        <h3>Quick Overview</h3>
+                        <div class="time-period-selector">
+                            <button class="period-btn active" data-period="current">Current Period</button>
+                            <button class="period-btn" data-period="week">This Week</button>
+                            <button class="period-btn" data-period="month">This Month</button>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-content">
+                                <span class="stat-label">Total Expenses</span>
+                                <span class="stat-value" id="stat-total-expenses">₹0</span>
                             </div>
-                            <span>Add Expense</span>
-                        </button>
-                        <button class="action-btn" onclick="showSection('recurring-bills')">
-                            <div class="action-icon bill-icon">
-                                <i class="fas fa-calendar-plus"></i>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🍽️</div>
+                            <div class="stat-content">
+                                <span class="stat-label">Top Category</span>
+                                <span class="stat-value" id="stat-top-category">Food</span>
                             </div>
-                            <span>Add Bill</span>
-                        </button>
-                        <button class="action-btn" onclick="showSection('budget-limits')">
-                            <div class="action-icon budget-icon">
-                                <i class="fas fa-target"></i>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">📅</div>
+                            <div class="stat-content">
+                                <span class="stat-label">Days Active</span>
+                                <span class="stat-value" id="stat-active-days">0</span>
                             </div>
-                            <span>Set Budget</span>
-                        </button>
-                        <button class="action-btn" onclick="showSection('statistics')">
-                            <div class="action-icon stats-icon">
-                                <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-content">
+                                <span class="stat-label">Avg Per Day</span>
+                                <span class="stat-value" id="stat-avg-per-day">₹0</span>
                             </div>
-                            <span>View Stats</span>
-                        </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Recent Transactions -->
-                <div class="recent-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-history"></i>
-                        Recent Transactions
-                    </h3>
-                    <div class="recent-transactions glass-effect">
-                        <div id="recent-list" class="transaction-list"></div>
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <div class="activity-header">
+                        <h3>Recent Activity</h3>
+                        <button class="view-all-btn" onclick="showSection('history')">View All</button>
+                    </div>
+                    <div class="activity-list" id="recent-activity-list">
+                        <!-- Activity items will be populated here -->
                     </div>
                 </div>
             </section>
 
-            <!-- Other sections remain the same structure but with enhanced styling -->
             <!-- Add Expense Section -->
             <section id="add-expense" class="content-section">
                 <div class="section-header">
                     <div class="header-content">
-                        <h1 class="page-title">
-                            <span class="title-icon">💸</span>
-                            Add New Expense
-                        </h1>
-                        <p class="page-subtitle">Track your spending with detailed categorization</p>
+                        <h1 class="page-title">Add Expense</h1>
+                        <p class="page-subtitle">Record your spending quickly and efficiently</p>
                     </div>
                 </div>
 
-                <div class="form-section glass-effect">
-                    <form class="premium-form">
+                <div class="form-container premium-form">
+                    <div class="form-header">
+                        <h3>New Expense Entry</h3>
+                        <div class="quick-amounts">
+                            <button class="quick-amount-btn" onclick="setQuickAmount(50)">₹50</button>
+                            <button class="quick-amount-btn" onclick="setQuickAmount(100)">₹100</button>
+                            <button class="quick-amount-btn" onclick="setQuickAmount(200)">₹200</button>
+                            <button class="quick-amount-btn" onclick="setQuickAmount(500)">₹500</button>
+                        </div>
+                    </div>
+                    
+                    <form class="expense-form">
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="expense-description">
-                                    <i class="fas fa-tag"></i>
-                                    Description
-                                </label>
-                                <input type="text" id="expense-description" placeholder="e.g., Lunch at mess, Books, Transport">
+                            <div class="form-group floating-label">
+                                <input type="text" id="expense-description" placeholder=" " required>
+                                <label for="expense-description">Description</label>
+                                <div class="form-icon"><i class="fas fa-edit"></i></div>
                             </div>
-                            <div class="form-group">
-                                <label for="expense-amount">
-                                    <i class="fas fa-rupee-sign"></i>
-                                    Amount
-                                </label>
-                                <input type="number" id="expense-amount" placeholder="0.00" min="0" step="0.01">
+                            <div class="form-group floating-label">
+                                <input type="number" id="expense-amount" placeholder=" " min="0" step="0.01" required>
+                                <label for="expense-amount">Amount (₹)</label>
+                                <div class="form-icon"><i class="fas fa-rupee-sign"></i></div>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="expense-category">
-                                    <i class="fas fa-list"></i>
-                                    Category
-                                </label>
-                                <select id="expense-category">
+                            <div class="form-group floating-label">
+                                <select id="expense-category" required>
+                                    <option value="">Select Category</option>
                                     <option value="Food">🍽️ Food & Dining</option>
                                     <option value="Transport">🚌 Transport</option>
                                     <option value="Education">📚 Education & Books</option>
@@ -308,36 +320,347 @@
                                     <option value="Emergency">🚨 Emergency</option>
                                     <option value="Other">📋 Other</option>
                                 </select>
+                                <label for="expense-category">Category</label>
+                                <div class="form-icon"><i class="fas fa-tags"></i></div>
                             </div>
-                            <div class="form-group">
-                                <label for="expense-date">
-                                    <i class="fas fa-calendar"></i>
-                                    Date
-                                </label>
-                                <input type="date" id="expense-date">
+                            <div class="form-group floating-label">
+                                <input type="date" id="expense-date" required>
+                                <label for="expense-date">Date</label>
+                                <div class="form-icon"><i class="fas fa-calendar"></i></div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="expense-notes">
-                                <i class="fas fa-sticky-note"></i>
-                                Notes (Optional)
-                            </label>
-                            <textarea id="expense-notes" placeholder="Additional details about this expense..."></textarea>
+                        <div class="form-group floating-label">
+                            <textarea id="expense-notes" placeholder=" " rows="3"></textarea>
+                            <label for="expense-notes">Additional Notes</label>
+                            <div class="form-icon"><i class="fas fa-sticky-note"></i></div>
                         </div>
 
-                        <button type="button" onclick="addExpense()" class="submit-btn premium-gradient">
-                            <i class="fas fa-save"></i>
-                            <span>Add Expense</span>
-                            <div class="btn-shine"></div>
-                        </button>
+                        <div class="form-actions">
+                            <button type="button" class="premium-btn secondary" onclick="clearExpenseForm()">
+                                <i class="fas fa-times"></i>
+                                <span>Clear</span>
+                            </button>
+                            <button type="button" class="premium-btn primary" onclick="addExpense()">
+                                <i class="fas fa-plus"></i>
+                                <span>Add Expense</span>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </section>
 
-            <!-- Continue with other sections using similar enhanced styling... -->
-            <!-- For brevity, I'll show the pattern but you can apply similar enhancements to all sections -->
+            <!-- Analytics Section -->
+            <section id="analytics" class="content-section">
+                <div class="section-header">
+                    <div class="header-content">
+                        <h1 class="page-title">Advanced Analytics</h1>
+                        <p class="page-subtitle">Deep insights into your spending patterns</p>
+                    </div>
+                    <div class="header-actions">
+                        <select class="period-selector" id="analytics-period">
+                            <option value="current">Current Period</option>
+                            <option value="last">Last Period</option>
+                            <option value="all">All Time</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3>Category Distribution</h3>
+                            <div class="chart-legend" id="category-legend"></div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="category-chart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3>Spending Trends</h3>
+                            <div class="trend-indicators" id="trend-indicators"></div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="trend-chart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card full-width">
+                        <div class="card-header">
+                            <h3>Daily Breakdown</h3>
+                            <div class="breakdown-filters">
+                                <button class="filter-btn active" data-view="amount">Amount</button>
+                                <button class="filter-btn" data-view="count">Count</button>
+                                <button class="filter-btn" data-view="avg">Average</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="daily-chart" width="800" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Insights -->
+                <div class="insights-section">
+                    <h3>AI-Powered Insights</h3>
+                    <div class="insights-grid" id="insights-container">
+                        <!-- Insights will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history" class="content-section">
+                <div class="section-header">
+                    <div class="header-content">
+                        <h1 class="page-title">Expense History</h1>
+                        <p class="page-subtitle">View and manage all your past expenses</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="premium-btn secondary" onclick="exportHistoricalData()">
+                            <i class="fas fa-download"></i>
+                            <span>Export</span>
+                        </button>
+                        <button class="premium-btn danger" onclick="showResetModal()">
+                            <i class="fas fa-trash-restore"></i>
+                            <span>Reset Period</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Period Selector -->
+                <div class="period-navigation">
+                    <button class="nav-btn" onclick="navigatePeriod(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="period-display">
+                        <h3 id="selected-period-title">Current Period</h3>
+                        <span id="selected-period-dates">Jan 1 - Jan 31, 2025</span>
+                    </div>
+                    <button class="nav-btn" onclick="navigatePeriod(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Expense Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="search-container">
+                            <input type="text" id="expense-search" placeholder="Search expenses...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="filter-container">
+                            <select id="category-filter">
+                                <option value="">All Categories</option>
+                                <option value="Food">Food</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Education">Education</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Health">Health</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Emergency">Emergency</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="expense-table" id="expense-table">
+                        <!-- Table content will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <div class="section-header">
+                    <div class="header-content">
+                        <h1 class="page-title">Settings</h1>
+                        <p class="page-subtitle">Customize your expense tracking experience</p>
+                    </div>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <h3>Tracking Periods</h3>
+                            <p>Manage your expense tracking periods</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="setting-item">
+                                <label>Current Period Duration</label>
+                                <div class="input-group">
+                                    <input type="number" id="period-duration" min="1" max="365" value="30">
+                                    <select id="period-unit">
+                                        <option value="days">Days</option>
+                                        <option value="weeks">Weeks</option>
+                                        <option value="months">Months</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Period Start Date</label>
+                                <input type="date" id="period-start-date">
+                            </div>
+                            <button class="premium-btn" onclick="updateTrackingPeriod()">
+                                <i class="fas fa-save"></i>
+                                <span>Update Period</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <h3>Notifications</h3>
+                            <p>Configure your reminder preferences</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="setting-item">
+                                <label>Daily Reminder Time</label>
+                                <input type="time" id="reminder-time" value="21:30">
+                            </div>
+                            <div class="setting-item toggle-item">
+                                <label>Budget Warnings</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="budget-warnings" checked>
+                                    <span class="slider"></span>
+                                </div>
+                            </div>
+                            <div class="setting-item toggle-item">
+                                <label>Bill Reminders</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="bill-reminders" checked>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <h3>Data Management</h3>
+                            <p>Backup, restore, and manage your data</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="data-actions">
+                                <button class="action-btn export" onclick="exportAllData()">
+                                    <i class="fas fa-download"></i>
+                                    <span>Export All Data</span>
+                                </button>
+                                <button class="action-btn import" onclick="document.getElementById('import-file').click()">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Import Data</span>
+                                </button>
+                                <input type="file" id="import-file" accept=".json" style="display: none" onchange="importData(this)">
+                                <button class="action-btn danger" onclick="showClearDataModal()">
+                                    <i class="fas fa-trash"></i>
+                                    <span>Clear All Data</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <h3>Theme & Appearance</h3>
+                            <p>Customize the look and feel</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="theme-selector">
+                                <div class="theme-option active" data-theme="default">
+                                    <div class="theme-preview default-theme"></div>
+                                    <span>Default</span>
+                                </div>
+                                <div class="theme-option" data-theme="dark">
+                                    <div class="theme-preview dark-theme"></div>
+                                    <span>Dark</span>
+                                </div>
+                                <div class="theme-option" data-theme="ocean">
+                                    <div class="theme-preview ocean-theme"></div>
+                                    <span>Ocean</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
+    </div>
+
+    <!-- New Period Modal -->
+    <div id="period-modal" class="modal">
+        <div class="modal-content premium-modal">
+            <div class="modal-header">
+                <h3>Start New Tracking Period</h3>
+                <button class="close-btn" onclick="closePeriodModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="period-form">
+                    <div class="form-group">
+                        <label>Period Duration</label>
+                        <div class="duration-selector">
+                            <input type="number" id="new-period-duration" value="30" min="1" max="365">
+                            <select id="new-period-unit">
+                                <option value="days">Days</option>
+                                <option value="weeks">Weeks</option>
+                                <option value="months">Months</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="date" id="new-period-start">
+                    </div>
+                    <div class="form-group">
+                        <label>Budget Limit</label>
+                        <input type="number" id="new-period-budget" placeholder="10000" min="0">
+                    </div>
+                    <div class="period-preview">
+                        <h4>Period Preview</h4>
+                        <div class="preview-info">
+                            <span id="period-preview-text">30 days starting from today</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="premium-btn secondary" onclick="closePeriodModal()">Cancel</button>
+                <button class="premium-btn primary" onclick="createNewPeriod()">Start New Period</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Modal -->
+    <div id="reset-modal" class="modal">
+        <div class="modal-content premium-modal danger-modal">
+            <div class="modal-header">
+                <h3>Reset Current Period</h3>
+                <button class="close-btn" onclick="closeResetModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="warning-content">
+                    <div class="warning-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <p>This will permanently delete all expenses from the current tracking period. This action cannot be undone.</p>
+                    <div class="reset-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="archive-before-reset">
+                            <span class="checkmark"></span>
+                            Archive current data before reset
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="premium-btn secondary" onclick="closeResetModal()">Cancel</button>
+                <button class="premium-btn danger" onclick="resetCurrentPeriod()">Reset Period</button>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
